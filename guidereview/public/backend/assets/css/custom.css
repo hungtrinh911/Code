@@ -1,0 +1,93 @@
+/* =============
+Select Lang
+============= */
+.select-lang .list-unstyled > li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.select-lang .list-unstyled > li > a {
+  color: #333;
+}
+
+.select-lang .list-unstyled > li:hover > a,
+.select-lang .list-unstyled > li.active > a {
+  color: #5d9cec;
+}
+
+/* =============
+Tags Input
+============= */
+.tags-beside-textarea { height: 100%; }
+.tags-beside-textarea .bootstrap-tagsinput { height: 100%; width: 100%; }
+
+/* =============
+img close
+============= */
+.img-item {
+  display: inline-block;
+  position: relative;
+}
+
+.img-item .btn-remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.img-item .btn-remove:hover {
+  background: #fff;
+  color: #ff0000;
+}
+/*==========page breackbum
+===========*/
+
+.page-breadcrumb{
+  padding-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+
+/*================
+ Profile
+ =================*/
+ span.bold {
+  font-weight: 700 !important;
+ }
+ .ticket-cust{
+  
+ }
+  .profile {
+  margin-bottom: 18px !important;
+ }
+.port{
+  margin-bottom: 18px ;
+}
+ .portfolioContainer img {
+    
+     width: 100% !important;
+     height: 100% !important;
+}
+
+    
+
+.portfolioContainer .thumb {
+    
+     width: 100% !important;
+     height: 200px !important;
+    
+}
+
+.clearfix{
+  padding-bottom: 20px;
+}
