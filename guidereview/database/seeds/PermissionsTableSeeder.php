@@ -191,7 +191,7 @@ class PermissionsTableSeeder extends Seeder
     /*Job Search*/
 
         $permission = new Permission();
-        $permission->slug = 'jobearch';
+        $permission->slug = 'jobsearch';
         $permission->name ='Danh Sách Job search';
         $permission->thing_id = MenuItem::where([['slug', '/jobsearch'], ['locale', env('LOCALE_DEFAULT')]])->first()['id'];
         $permission->save();
@@ -300,8 +300,22 @@ class PermissionsTableSeeder extends Seeder
         $permission->save();
         $permission->roles()->attach(Role::where([['slug', 'developer'], ['locale', env('LOCALE_DEFAULT')]])->first());
 
+/**===Tìm kiếm tourguide  ===**/
+
+        $permission = new Permission();
+        $permission->slug = 'check';
+        $permission->name = 'Tìm kiếm Người dùng';
+        $permission->thing_id = MenuItem::where([['slug', '/check'], ['locale', env('LOCALE_DEFAULT')]])->first()['id'];
+        $permission->save();
+        $permission->roles()->attach(Role::where([['slug', 'developer'], ['locale', env('LOCALE_DEFAULT')]])->first());
 
 
+        $permission = new Permission();
+        $permission->slug = 'check-tourgude';
+        $permission->name = 'Danh sách Người dùng';
+        $permission->thing_id = MenuItem::where([['slug', '/check/tourguide'], ['locale', env('LOCALE_DEFAULT')]])->first()['id'];
+        $permission->save();
+        $permission->roles()->attach(Role::where([['slug', 'developer'], ['locale', env('LOCALE_DEFAULT')]])->first());
 /*=== Người dùng - Tiếng Việt ===*/
         $permission = new Permission();
         $permission->slug = 'list-user';

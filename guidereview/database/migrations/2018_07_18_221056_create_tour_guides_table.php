@@ -17,6 +17,8 @@ class CreateTourGuidesTable extends Migration
             $table->increments('id');
             $table->string('name',500);
             $table->string('email',500);
+            $table->string('start',500)->nullable();
+            $table->string('end',500)->nullable();
             $table->string('dob',500)->nullable();
             $table->string('sex',20)->nullable();
             $table->string('status',20)->nullable();

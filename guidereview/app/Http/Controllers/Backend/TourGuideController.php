@@ -27,6 +27,8 @@ use App\User;
 use App\UserRole;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use Mail;
+use Session;
 //use App\Http\Controllers\Controller;
 
 class TourGuideController extends Controller
@@ -39,6 +41,7 @@ class TourGuideController extends Controller
     public function index()
     {
         //
+
         $tourguides = DB::table('tour_guides')->get();
         return view("backend.tourguide.index",compact('tourguides'));
     }
@@ -66,6 +69,48 @@ class TourGuideController extends Controller
      */
     public function store(Request $request)
     {
+     $user = [
+            'email'  =>$request->input('email'),
+            'name'    => $request->input('username'),
+        ];
+        Mail::send('email.welcome', $user, function($message) use ($user){
+            $message->to($user['email'], 'Chào mừng đến với guidereview.asia')
+                    ->subject('Tài khoản được tạo thành công!');
+        });
+
+
+        try {
+            DB::beginTransaction();
+
+            // 01. Them bang user
+            $user = new User();
+            $user->username = $request->input('username');
+            $user->name = $request->input('username');
+            $user->email = $request->input('email');
+            $user->password = Hash::make('123456');//md5('123456');
+            $user->channel = 'backend';
+            $flg = $user->save();
+            if (!$flg) {
+                DB::rollBack();
+                return back()->with('error', trans('backend/common.error'))->withInput();
+            }
+
+
+             
+            $permission = ['7','13','14'];
+
+            foreach ($permission as $per) {
+
+                        if ($per != "") {
+                            $user->permissions()->attach($per);
+                        }
+
+            }
+            DB::commit();
+        } catch (\Exception $ex) {
+            DB::rollBack();
+        }
+
 
 
         $image_cv = $request->file('logo1');
@@ -93,7 +138,7 @@ class TourGuideController extends Controller
        
         
         $tourguide = new TourGuide();
-        dd($tourguide->id);
+
         $tourguide->name = $request->input('name');
         $tourguide->dob = $request->input('dob');
         $tourguide->sex = $request->input('sex');
@@ -314,6 +359,7 @@ class TourGuideController extends Controller
      {
         $tourguide = TourGuide::findOrFail($id);    
         $arr_languages = $request->input('languages');
+       // dd($arr_languages);
         $arr_roles = $request->input('roles');
         $arr_fields = $request->input('field');
         $arr_certificates = $request->input('certificates');
@@ -325,13 +371,17 @@ class TourGuideController extends Controller
         $locale_1 = new TourGuide();
         $locale_1 = $request->input('locale_1');
        // dd($locale_1);
+        $start = $request->input('start');
+        $end = $request->input('end');
+      // $start = strtotime($start);
+        //$end = strtotime($end);
         $locale_2 = new TourGuide();
         $locale_2 = $request->input('locale_2');
-        DB::beginTransaction();
 
+        DB::beginTransaction();
         DB::table('tour_guides')
             ->where('id', $id)
-            ->update(['language' => $languages, 'certificate'=>$certificate , 'locale_1'=>$locale_1 ,'locale_2'=>$locale_2]);
+            ->update(['language' => $languages, 'certificate'=>$certificate , 'locale_1'=>$locale_1 ,'locale_2'=>$locale_2 ,'start'=>$start,'end'=>$end]);
 
         DB::table('tour_guide_langs')->where('id_tourguide',$tourguide->id)->delete();
         DB::table('tour_guide_roles')->where('id_tourguide',$tourguide->id)->delete();
@@ -387,7 +437,7 @@ class TourGuideController extends Controller
        $flg = DB::commit();
         
         if (!$flg){
-          return back()->with('success', trans('backend/common.success'))->withInput();
+            return back()->with('success', trans('backend/common.success'))->withInput();
         } else {
             return back()->with('error', trans('backend/common.error'))->withInput();
         }
@@ -424,7 +474,15 @@ class TourGuideController extends Controller
             'username' => 'required|unique:users|max:255',
             'email' => 'required|unique:users|max:255|email',
         ]);
-        
+         $user = [
+            'email'  =>$request->input('email'),
+            'name'    => $request->input('username'),
+        ];
+        Mail::send('email.welcome', $user, function($message) use ($user){
+            $message->to($user['email'], 'Chào mừng đến với guidereview.asia')
+                    ->subject('Tài khoản được tạo thành công!');
+        });
+
 
         try {
             DB::beginTransaction();

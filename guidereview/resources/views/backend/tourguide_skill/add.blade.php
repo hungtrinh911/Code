@@ -1,11 +1,7 @@
 @extends('backend.layout')
 @section('title', 'Thêm TourGuide')
 @section('css')
- <!--  <link href="backend/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-  <link href="backend/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-  <link href="backend/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-  <link href="backend/plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
-  <link href="backend/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"> -->
+
 
   <link href="{{asset("backend/assets/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
   <link href="{{asset("backend/assets/css/components-md.min.css")}}" rel="stylesheet" type="text/css" />
@@ -16,6 +12,15 @@
   <link rel="stylesheet" href="{{asset("backend/assets/css/custom.css")}}" type="text/css">
   <link rel="stylesheet" href="{{asset("backend/assets/css/profile.min.css")}}" type="text/css">
   <link rel="stylesheet" href="{{asset("backend/assets/css/ticket.min.css")}}" type="text/css">
+
+      <link href="{{asset("backend/plugins/timepicker/bootstrap-timepicker.min.css")}}" rel="stylesheet">
+      <link href="{{asset("backend/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css")}}" rel="stylesheet">
+      <link href="{{asset("backend/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css")}}" rel="stylesheet">
+      <!-- <link href="{{asset("backend/plugins/bootstrap-datepicker/css/bootstrap-datepicker1.min.css")}}" rel="stylesheet">
+      <link href="{{asset("backend/plugins/bootstrap-datepicker/css/bootstrap-datepicker2.min.css")}}" rel="stylesheet"> -->
+      <link href="{{asset("backend/plugins/clockpicker/css/bootstrap-clockpicker.min.css")}}" rel="stylesheet">
+      <link href="{{asset("backend/plugins/bootstrap-daterangepicker/daterangepicker.css")}}" rel="stylesheet">
+
 
   <link href="{{asset("backend/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css")}}" rel="stylesheet" />
   <link href="{{asset("backend/plugins/switchery/css/switchery.min.css")}}" rel="stylesheet" />
@@ -405,6 +410,30 @@
                       </div>  
                     </div>
                   </div>
+
+                  <div class="card-box">
+                    <div class="row">
+                      <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="start" class="text-uppercase" style="color: dodgerblue" >Thời gian bận</label>
+                                  <div>
+                                    <div class="input-daterange input-group" id="date-range">
+                                        <input type="text" class="form-control" name="start" id="start" value="{{$tourguides->start}}" />
+                                        <input type="text" class="form-control" name="end"  id="end" value="{{$tourguides->end}}" />
+                                    </div>
+                                  </div>
+                              </div>  
+                               <div class="form-group">
+                           <div>
+                                 <button type="submit" class="btn btn-primary waves-effect waves-light" name="btn_role">
+                                        Lưu
+                                 </button>
+                           </div>
+                      </div>                       
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="card-box">
                       <div class="row">
                         <div class="col-md-12">
@@ -492,6 +521,14 @@
     <script src="{{asset("backend/assets/js/jquery.nicescroll.js")}}"></script>
     <script src="{{asset("backend/assets/js/jquery.scrollTo.min.js")}}"></script>
 
+      <script src="{{asset("backend/plugins/moment/moment.js")}}"></script>
+      <script src="{{asset("backend/plugins/timepicker/bootstrap-timepicker.js")}}"></script>
+      <script src="{{asset("backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js")}}"></script>
+      <script src="{{asset("backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js")}}"></script>
+      <!-- <script src="{{asset("backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker1.min.js")}}"></script>
+      <script src="{{asset("backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker2.min.js")}}"></script> -->
+      <script src="{{asset("backend/plugins/clockpicker/js/bootstrap-clockpicker.min.js")}}"></script>
+      <script src="{{asset("backend/plugins/bootstrap-daterangepicker/daterangepicker.js")}}"></script>
 
 
 

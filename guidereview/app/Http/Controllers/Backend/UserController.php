@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-
+use Mail;
 
 class UserController extends Controller
 {
@@ -139,8 +139,6 @@ class UserController extends Controller
             'username' => 'required|unique:users|max:255',
             'email' => 'required|unique:users|max:255|email',
         ]);
-        
-
         try {
             DB::beginTransaction();
             $flg = true;
@@ -189,7 +187,6 @@ class UserController extends Controller
                 'success' => trans('backend/common.success'),
                 'jsRoles' => $jsRoles
             ])->withInput();
-
 
         } catch (\Exception $ex) {
             DB::rollBack();

@@ -20,6 +20,7 @@ Route::get('TourGuide/add','Backend\TourGuideController@create')->middleware(['p
 Route::post('TourGuide/add','Backend\TourGuideController@store')->middleware(['permission:add-tourguide']);
 
 Route::get('TourGuide/add/account','Backend\TourGuideController@createAccount')->middleware(['permission:add-tourguide']);
+//Route::post('TourGuide/add/account','Backend\TourGuideController@storeAccount')->middleware(['permission:add-tourguide']);
 Route::post('TourGuide/add/account','Backend\TourGuideController@storeAccount')->middleware(['permission:add-tourguide']);
 
 Route::get('TourGuide/showprofile/{id}','Backend\TourGuideController@showprofile')->middleware(['permission:show-tourguide']);
@@ -32,6 +33,13 @@ Route::get('TourGuide/edit/{id}','Backend\TourGuideController@edit')->middleware
 Route::post('TourGuide/edit/{id}','Backend\TourGuideController@update')->middleware(['permission:edit-tourguide']);
 
 Route::get('TourGuide/{id}','Backend\TourGuideController@destroy')->middleware(['permission:delete-tourguide']);
+
+/** free tour guide**/
+Route::get('check','Backend\FreeTourGuideController@check');
+Route::post('check','Backend\FreeTourGuideController@check');
+
+Route::get('check/tourguide','Backend\FreeTourGuideController@check');
+Route::post('check/tourguide','Backend\FreeTourGuideController@check');
 
 /**Comment**/
 Route::get('comment','Backend\CommentController@showAllComment')->middleware(['permission:list-comment']);
@@ -172,10 +180,10 @@ Route::post('user/updateprofile', 'Backend\UserController@updateprofile');//->mi
 /**
  * Auth // Password Reset Routes...
  */
-Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm');
-Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm');
-Route::post('password/reset', 'ResetPasswordController@reset');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /**
  * Permission

@@ -117,7 +117,7 @@ class ThingsTableSeeder extends Seeder
         $thing->locale = env('LOCALE_DEFAULT');
         $thing->parent_id = Thing::where([['slug', '/TourGuide'], ['locale', $thing->locale]])->first()['id'];
         $thing->order_index = 0;
-        $thing->metadata = '{"hasChild":false,"showOnMenu":false}';
+        $thing->metadata = '{"hasChild":false,"showOnMenu":true}';
         $thing->save();
 
         $thing = new Thing();
@@ -211,7 +211,7 @@ class ThingsTableSeeder extends Seeder
         $thing->type = 'menu_item';
         $thing->status = 'publish';
         $thing->parent_id = 0;
-        $thing->order_index = 2;
+        $thing->order_index = 3;
         $thing->metadata = '{"hasChild":true,"showOnMenu":true}';
         $thing->locale = env('LOCALE_DEFAULT');
         $thing->save();
@@ -302,7 +302,7 @@ class ThingsTableSeeder extends Seeder
         $thing->type = 'menu_item';
         $thing->status = 'publish';
         $thing->parent_id = 0;
-        $thing->order_index = 3;
+        $thing->order_index = 4;
         $thing->metadata = '{"hasChild":true,"showOnMenu":true}';
         $thing->locale = env('LOCALE_DEFAULT');
         $thing->save();
@@ -392,7 +392,7 @@ class ThingsTableSeeder extends Seeder
         $thing->type = 'menu_item';
         $thing->status = 'publish';
         $thing->parent_id = 0;
-        $thing->order_index = 2;
+        $thing->order_index = 5;
         $thing->metadata = '{"hasChild":true,"showOnMenu":true}';
         $thing->locale = env('LOCALE_DEFAULT');
         $thing->save();
@@ -482,6 +482,34 @@ class ThingsTableSeeder extends Seeder
         $thing->metadata = '{"hasChild":false,"showOnMenu":false}';
         $thing->save();
 
+
+/**== Tìm kiếm tourguide không bận==**/
+
+        $thing = new Thing();
+        $thing->title = 'Tìm kiếm';
+        $thing->slug = '/check';
+        $thing->featured_img = 'ti-search';
+        $thing->type = 'menu_item';
+        $thing->status = 'publish';
+        $thing->parent_id = 0;
+        $thing->order_index = 7;
+        $thing->metadata = '{"hasChild":true,"showOnMenu":true}';
+        $thing->locale = env('LOCALE_DEFAULT');
+        $thing->save();
+        $thing->terms()->attach(Term::where([['slug', 'backend-menu'], ['locale', $thing->locale]])->first());
+
+        $thing = new Thing();
+        $thing->title = 'Tourguide rảnh';
+        $thing->slug = '/check/tourguide';
+        $thing->featured_img = '';
+        $thing->type = 'menu_item';
+        $thing->status = 'publish';
+        $thing->locale = env('LOCALE_DEFAULT');
+        $thing->parent_id = Thing::where([['slug', '/check'], ['locale', $thing->locale]])->first()['id'];
+        $thing->order_index = 1;
+        $thing->metadata = '{"hasChild":false,"showOnMenu":true}';
+        $thing->save();
+
 /*=== Người dùng - Tiếng Việt ===*/
         $thing = new Thing();
         $thing->title = 'Người dùng';
@@ -490,7 +518,7 @@ class ThingsTableSeeder extends Seeder
         $thing->type = 'menu_item';
         $thing->status = 'publish';
         $thing->parent_id = 0;
-        $thing->order_index = 7;
+        $thing->order_index = 8;
         $thing->metadata = '{"hasChild":true,"showOnMenu":true}';
         $thing->locale = env('LOCALE_DEFAULT');
         $thing->save();

@@ -102,7 +102,7 @@
               <div class="portlet">
                 <div class="portlet-body">
                  <div class="row"> -->
-                   <div class="col-md-12">@include('backend.shared.flash-message')</div>
+                  
                   <div class="col-md-12">
                     <input type="hidden" name="" value="{{$id =$tourguides->id}}">
                     <form method="post" class="form-add" action="{{ action('Backend\TourGuideController@show_skill',['id' => $id]) }}" enctype="multipart/form-data">

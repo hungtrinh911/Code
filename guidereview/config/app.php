@@ -165,6 +165,7 @@ return [
          */
        // Barryvdh\Debugbar\ServiceProvider::class,
         App\Providers\PermissionsServiceProvider::class,
+      //  App\Providers\ComposerServiceProvider::class,
     ],
 
     /*
@@ -215,9 +216,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /* Added by seekill */
-        'DebugBar' => Barryvdh\Debugbar\Facade::class,
+       //'DebugBar' => Barryvdh\Debugbar\Facade::class,
         'Helper' => App\Helper::class,
-        'Input'     => Illuminate\Support\Facades\Input::class,
     ],
 
 ];
